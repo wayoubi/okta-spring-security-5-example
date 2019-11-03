@@ -5,13 +5,15 @@ spring:
     oauth2:
       client:
         registration:
+          #rolesClaim: groups
           okta:
-            client-id: 0oad2f9lm1tDEZUCf0h7
-            client-secret: G2Gh5INi8aVgtbI391ssmfLRcxu4vXHk1wa2I36V
+            client-id: 0oa1peg82wyZfUm3V357
+            client-secret: 8pITCad0VEsrE48zTclRf6B88Z6yPO2GoyTKYnZx
         provider:
           okta:
-            authorization-uri: https://dev-158606.oktapreview.com/oauth2/default/v1/authorize
-            token-uri: https://dev-158606.oktapreview.com/oauth2/default/v1/token
-            user-info-uri: https://dev-158606.oktapreview.com/oauth2/default/v1/userinfo
+            authorization-uri: https://identity.okta-demo.online/oauth2/default/v1/authorize
+            token-uri: https://identity.okta-demo.online/oauth2/default/v1/token
+            user-info-uri: https://identity.okta-demo.online/oauth2/default/v1/userinfo
             user-name-attribute: preferred_username
-            jwk-set-uri: https://dev-158606.oktapreview.com/oauth2/default/v1/keys
+            jwk-set-uri: https://identity.okta-demo.online/oauth2/default/v1/keys
+            

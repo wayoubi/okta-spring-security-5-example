@@ -15,6 +15,9 @@
  */
 package com.okta.developer.oidc;
 
+import java.util.Collections;
+import java.util.Map;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
@@ -26,10 +29,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.reactive.function.client.ClientRequest;
 import org.springframework.web.reactive.function.client.ExchangeFilterFunction;
 import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Mono;
 
-import java.util.Collections;
-import java.util.Map;
+import reactor.core.publisher.Mono;
 
 /**
  * @author Joe Grandja
@@ -42,8 +43,13 @@ public class MainController {
     public MainController(OAuth2AuthorizedClientService authorizedClientService) {
         this.authorizedClientService = authorizedClientService;
     }
-
+    
     @RequestMapping("/")
+    public String landing() {
+        return "landing";
+    }
+
+    @RequestMapping("/authenticated")
     public String index(Model model, OAuth2AuthenticationToken authentication) {
         OAuth2AuthorizedClient authorizedClient = this.getAuthorizedClient(authentication);
         model.addAttribute("userName", authentication.getName());
@@ -67,7 +73,15 @@ public class MainController {
         model.addAttribute("userAttributes", userAttributes);
         return "userinfo";
     }
-
+    
+    @RequestMapping("/administrator")
+    public String administrator(Model model, OAuth2AuthenticationToken authentication) {
+        OAuth2AuthorizedClient authorizedClient = this.getAuthorizedClient(authentication);
+        model.addAttribute("userName", authentication.getName());
+        model.addAttribute("clientName", authorizedClient.getClientRegistration().getClientName());
+        return "administrator";
+    }
+    
     private OAuth2AuthorizedClient getAuthorizedClient(OAuth2AuthenticationToken authentication) {
         return this.authorizedClientService.loadAuthorizedClient(
                 authentication.getAuthorizedClientRegistrationId(), authentication.getName());
