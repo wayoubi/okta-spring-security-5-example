@@ -7,8 +7,8 @@ spring:
         registration:
           #rolesClaim: groups
           okta:
-            client-id: 0oa1qljuqqVh80BrB357
-            client-secret: 3fDaKYvq0RNrIT7waqrY_jQ3nEi79Hx8BDscOZcu
+            client-id: 0oa1peg82wyZfUm3V357
+            client-secret: 8pITCad0VEsrE48zTclRf6B88Z6yPO2GoyTKYnZx
         provider:
           okta:
             authorization-uri: https://identity.okta-demo.online/oauth2/default/v1/authorize
